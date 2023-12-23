@@ -15,7 +15,7 @@ body{
 }
 
 .bx-user-circle {
-    font-size: 50px; /* Set the desired size */
+    font-size: 50px; 
 }
 
 .sidebar{
@@ -27,26 +27,139 @@ body{
     background: var(--primary);
     padding: .4rem .8rem;
     transition: all 0.5s ease;
+    font-size: 25px;
 }
 
-.sidebar .active ~ .main-content {
-    left: 250px;
-    width: calc(100% - 250px);
+.sidebar.active ~ .main-content {
+    left: 260px;
+    width: calc(100% - 260px);
 }
 
 .sidebar.active{
-    width: 250px;
+    width: 260px;
 }
 
 .sidebar #btn{
     position: absolute;
     color: white;
-    top: .4rem;
+    top: .6rem;
     left: 50%;
+    font-size: 1.2rem;
+    line-height: 50px;
+    transform: translate(-50%);
+    cursor: pointer;
 }
 
-.sidebar #btn:hover {
-    cursor: pointer;
+.sidebar.active #btn{
+    left: 90%;
+}
+
+.sidebar .top .logo{
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.sidebar.active .top .logo{
+   opacity: 1; 
+}
+
+.top .logo i{
+    font-size: 2rem;
+    margin-right: 5px;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.user p{
+    opacity: 1;
+    margin-left: 1rem;
+}
+
+.bold{
+    font-weight: 600;
+}
+
+.sidebar p{
+    opacity: 0;
+}
+.sidebar.active p{
+    opacity: 1;
+}
+
+.sidebar ul li{
+    position: relative;
+    list-style-type: none;
+    height: 50px;
+    width: 50%;
+    margin: 0.8rem auto;
+    line-height: 50px;
+}
+
+.sidebar ul li a{
+    color: rgb(49, 49, 49);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 0.8rem;
+}
+
+.sidebar ul li a:hover{
+    background-color: white;
+    color: #959A28;
+}
+
+.sidebar ul li a i{
+    min-width: 50px;
+    text-align: center;
+    height: 50px;
+    border-radius: 5px;
+    line-height: 50px;
+}
+
+.sidebar .nav-item{
+    opacity: 0;
+}
+
+.sidebar.active .nav-item{
+    opacity: 1;
+}
+
+.sidebar ul li .tooltip{
+    position: absolute;
+    left: 125px;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0.5rem 0.8rem var(--primary);
+    border-radius: .6rem;
+    padding: .4rem 1.2rem;
+    line-height: 1.8rem;
+    z-index: 20;
+    opacity: 0;
+}
+
+.sidebar ul li:hover .tooltip{
+    opacity: 1;
+}
+
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+
+.main-content{
+    position: relative;
+    min-height: 100vh;
+    top: 0;
+    left: 80px;
+    transition: all 0.5s ease;
+    width: calc(100% - 80px);
 }
 
 
