@@ -8,7 +8,7 @@
 
 :root{
     --primary: #959A28;
-    --main-background: rgb(241, 255, 236);
+    --main-background: rgb(247, 252, 245);
     --font-colour: rgb(49, 49, 49)
 }
 
@@ -116,8 +116,8 @@ body{
 }
 
 .sidebar ul li a:hover{
-    background-color: white;
-    color: #959A28;
+    background-color: var(--main-background);
+    color: var(--primary);
 }
 
 .sidebar ul li a i{
@@ -137,11 +137,12 @@ body{
 }
 
 .sidebar ul li .tooltip{
+    background-color: var(--main-background);
     position: absolute;
-    left: 140px;
+    left: 165px;
     top: 50%;
     transform: translate(-50%,-50%);
-    box-shadow: 0 0.5rem 0.8rem var(--primary);
+    box-shadow: 0 0.1rem 0.1rem var(--primary);
     border-radius: .6rem;
     padding: .4rem 1.2rem;
     line-height: 1.8rem;
