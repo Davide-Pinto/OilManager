@@ -3,11 +3,13 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--font-colour);
 }
 
 :root{
     --primary: #959A28;
     --main-background: rgb(241, 255, 236);
+    --font-colour: rgb(49, 49, 49)
 }
 
 body{
@@ -41,10 +43,10 @@ body{
 
 .sidebar #btn{
     position: absolute;
-    color: white;
+    color: var(--font-colour);
     top: .6rem;
     left: 50%;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     line-height: 50px;
     transform: translate(-50%);
     cursor: pointer;
@@ -81,6 +83,8 @@ body{
 .user p{
     opacity: 1;
     margin-left: 1rem;
+    align-items: center;
+    text-align: center;
 }
 
 .bold{
@@ -98,7 +102,7 @@ body{
     position: relative;
     list-style-type: none;
     height: 50px;
-    width: 50%;
+    width: 100%;
     margin: 0.8rem auto;
     line-height: 50px;
 }
@@ -134,7 +138,7 @@ body{
 
 .sidebar ul li .tooltip{
     position: absolute;
-    left: 125px;
+    left: 140px;
     top: 50%;
     transform: translate(-50%,-50%);
     box-shadow: 0 0.5rem 0.8rem var(--primary);
