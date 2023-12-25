@@ -1,11 +1,48 @@
 
+:root{
+    --primary: #959A28;
+    --main-background: rgb(247, 252, 245);
+    --font-colour: rgb(49, 49, 49)
+}
+
 .client-page-container{
     background-color: rgba(0, 0, 255, 0.055);
     margin: 80px;
     height: 90vh;
 }
-.filter-section{
-    margin: 10px;
-    display: flex;
-    
+
+table{
+    border-collapse: collapse;
+    margin: 0;
+    margin-top: 30px;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0,0,0,.25);
+}
+
+table tr{
+    padding: .45rem;
+}
+thead tr{
+    background-color: var(--primary);
+}
+
+thead th{
+    color:var(--font-colour);
+    font-size: 1.15rem;
+}
+
+tbody tr:nth-child(even){
+    background-color: #949a2863;
+}
+
+table th,
+table td{
+    font-size: 1rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.thead th{
+    color:var(--font-colour);
+    font-size: 1.15rem;
 }
