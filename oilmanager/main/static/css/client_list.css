@@ -1,10 +1,4 @@
 
-:root{
-    --primary: #959A28;
-    --secondary: #949a2863;
-    --main-background: rgb(247, 252, 245);
-    --font-colour: rgb(49, 49, 49)
-}
 
 .client-page-container{
     width: 100%;
@@ -12,6 +6,14 @@
     margin-right: 80px;
     height: 95vh;
     align-items: center;
+}
+
+:root{
+    --primary: #959A28;
+    --secondary: #949a2863;
+    --main-background: rgb(247, 252, 245);
+    --table-hover: #9fa115cc;
+    --font-colour: rgb(49, 49, 49)
 }
 
 table{
@@ -50,6 +52,11 @@ table td{
     font-size: 1.15rem;
 }
 
+
+tbody tr:hover{
+    cursor: pointer;
+    background-color: var(--table-hover);
+}
 .container-pagination{
     font-size: 15px;
     display: flex;
@@ -87,7 +94,21 @@ table td{
     padding-left: 10px;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
+
+.search-filter button{
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 9%;
+    padding: 8px 15px;
+    margin: 2px;
+}
+.search-filter input{
+    padding: 6px 13px;
+    margin: 2px;
+}
+
 .filter-buttons{
     width: 50%;
     display: flex;
@@ -101,6 +122,8 @@ table td{
     padding: 8px 15px;
     margin: 2px;
 }
+
+
 
 ::placeholder{
     text-align: center;

@@ -9,7 +9,11 @@
     <hr>
     <div class="filter-section">
         <div class="search-filter">
-            <input type="text" id="searchInput" placeholder="Procurar">
+            <span>Procurar:</span>
+            <form>
+                <input name="search-bar" type="text" id="searchInput" placeholder="Procurar">
+            </form>
+            <button onclick="clearFilter()">Limpar</button>
         </div>
         <div class="filter-buttons">
             <button id="showClosed">Criar</button>
@@ -24,7 +28,7 @@
             <tr>
                 <th>NºCliente</th>
                 <th>Nome</th>
-                <th>Morada</th>
+                <th>Localidade</th>
                 <th>Contacto</th>
             </tr>
         </thead>
