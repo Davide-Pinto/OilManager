@@ -79,10 +79,9 @@ class AuthUserUserPermissions(models.Model):
 
 class Cliente(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    recolhaazeitonaid = models.ForeignKey('Recolhaazeitona', models.DO_NOTHING, db_column='RecolhaAzeitonaID')  # Field name made lowercase.
-    nome = models.IntegerField(db_column='Nome', blank=True, null=True)  # Field name made lowercase.
-    morada = models.IntegerField(db_column='Morada', blank=True, null=True)  # Field name made lowercase.
-    contacto = models.IntegerField(db_column='Contacto', blank=True, null=True)  # Field name made lowercase.
+    nome = models.CharField(db_column='Nome', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    morada = models.CharField(db_column='Morada', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    contacto = models.CharField(db_column='Contacto', max_length=255, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -91,8 +90,8 @@ class Cliente(models.Model):
 
 class Distribuicaoazeite(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    clienteid = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='ClienteID')  # Field name made lowercase.
-    quantidadeazeite = models.IntegerField(db_column='QuantidadeAzeite', blank=True, null=True)  # Field name made lowercase.
+    estadoid = models.ForeignKey('Estado', models.DO_NOTHING, db_column='EstadoID')  # Field name made lowercase.
+    quantidadeazeite = models.FloatField(db_column='QuantidadeAzeite', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -144,11 +143,20 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class Estado(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    estado = models.CharField(db_column='Estado', max_length=255, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'estado'
+
+
 class Lagar(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    nome = models.IntegerField(db_column='Nome', blank=True, null=True)  # Field name made lowercase.
-    morada = models.IntegerField(db_column='Morada', blank=True, null=True)  # Field name made lowercase.
-    contacto = models.IntegerField(db_column='Contacto', blank=True, null=True)  # Field name made lowercase.
+    nome = models.CharField(db_column='Nome', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    morada = models.CharField(db_column='Morada', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    contacto = models.CharField(db_column='Contacto', max_length=255, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -158,8 +166,8 @@ class Lagar(models.Model):
 class Producaoazeite(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     lagarid = models.ForeignKey(Lagar, models.DO_NOTHING, db_column='LagarID')  # Field name made lowercase.
-    dataproducao = models.IntegerField(db_column='DataProducao', blank=True, null=True)  # Field name made lowercase.
-    azeiteproduzido = models.IntegerField(db_column='AzeiteProduzido', blank=True, null=True)  # Field name made lowercase.
+    dataproducao = models.DateField(db_column='DataProducao', blank=True, null=True)  # Field name made lowercase.
+    azeiteproduzido = models.FloatField(db_column='AzeiteProduzido', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -168,9 +176,11 @@ class Producaoazeite(models.Model):
 
 class Recolhaazeitona(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    clienteid = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='ClienteID')  # Field name made lowercase.
+    distribuicaoazeiteid = models.ForeignKey(Distribuicaoazeite, models.DO_NOTHING, db_column='DistribuicaoAzeiteID')  # Field name made lowercase.
     transporteazeitonaid = models.ForeignKey('Transporteazeitona', models.DO_NOTHING, db_column='TransporteAzeitonaID')  # Field name made lowercase.
-    quantidadeazeitona = models.IntegerField(db_column='QuantidadeAzeitona', blank=True, null=True)  # Field name made lowercase.
-    datarecolha = models.IntegerField(db_column='DataRecolha', blank=True, null=True)  # Field name made lowercase.
+    quantidadeazeitona = models.FloatField(db_column='QuantidadeAzeitona', blank=True, null=True)  # Field name made lowercase.
+    datarecolha = models.DateField(db_column='DataRecolha', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -180,8 +190,8 @@ class Recolhaazeitona(models.Model):
 class Transporteazeitona(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     lagarid = models.ForeignKey(Lagar, models.DO_NOTHING, db_column='LagarID')  # Field name made lowercase.
-    datatransporte = models.IntegerField(db_column='DataTransporte', blank=True, null=True)  # Field name made lowercase.
-    quantidade = models.IntegerField(db_column='Quantidade', blank=True, null=True)  # Field name made lowercase.
+    datatransporte = models.DateField(db_column='DataTransporte', blank=True, null=True)  # Field name made lowercase.
+    quantidade = models.FloatField(db_column='Quantidade', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

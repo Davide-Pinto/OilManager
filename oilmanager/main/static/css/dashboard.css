@@ -14,6 +14,7 @@
 
 body{
     background-color: var(--main-background);
+    overflow: hidden;
 }
 
 .bx-user-circle {
@@ -150,11 +151,11 @@ body{
     opacity: 0;
 }
 
-.sidebar ul li:hover .tooltip{
+.sidebar i:hover .tooltip{
     opacity: 1;
 }
 
-.sidebar.active ul li .tooltip{
+.sidebar.active i .tooltip{
     display: none;
 }
 

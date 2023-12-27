@@ -2,6 +2,8 @@
 {% extends 'base_layout.html' %}
 {%block content%}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 <div class="client-page-container">
     <h1>Lista de Clientes</h1>
     <hr>
@@ -12,31 +14,70 @@
         <button id="createClient">Create Client</button>
     </div>
     <hr>
-    <table>
+    <span>Mostrando {{pagr_obj.start_index}}-{{pagr_obj.end_index}} de {{pagr_obj.paginator.count}} Clientes </span>
+    <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>NºCliente</th>
                 <th>Nome</th>
-                <th>Contacto</th>
                 <th>Morada</th>
+                <th>Contacto</th>
             </tr>
         </thead>
         <tbody>
+            {% for client in pagr_obj %}
             <tr>
-                <td data-title="NºCliente">1</td>
-                <td data-title="Nome">Manuel</td>
-                <td data-title="Contacto">91XXXXXXX</td>
-                <td data-title="Morada">Odeleite</td>
+                <td>{{client.id}}</td>
+                <td>{{client.nome}}</td>
+                <td>{{client.morada}}</td>
+                <td>{{client.contacto}}</td>
             </tr>
-            <tr>
-                <td data-title="NºCliente">2</td>
-                <td data-title="Nome">Manuel2</td>
-                <td data-title="Contacto">91XXXXXXX</td>
-                <td data-title="Morada">Odeleite2</td>
-            </tr>
+            {% endfor %}
+            
         </tbody>
     </table>
-
+    <div class="container-pagination">
+        <div class="row my-5">
+            <div class="col-md-4">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {% if pagr_obj.has_previous %}
+                        <li class="page-item"> 
+                            <a class="button" href="?page=1" aria-label="Previous">
+                                <span aria-hidden="true">Início</span>
+                            </a>              
+                        </li>
+                    <li class="page-item">
+                        <a class="button" href="?page={{ pagr_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">Anterior</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for num_page in pagr_obj.paginator.page_range %}
+                        {%if pagr_obj.number == num_page %}
+                            <li class="page-item"><a class="button active" href="?page={{num_page}}">{{pagr_obj.number}}</a></li>
+                        {% elif pagr_obj.number != num_page %}
+                            <li class="page-item"><a class="button" href="?page={{num_page}}">{{num_page}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if pagr_obj.has_next %}
+                    <li class="page-item">
+                        <a class="button" href="?page={{pagr_obj.next_page_number}}" aria-label="Next">
+                        <span aria-hidden="true">Seguinte</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="button" href="?page={{pagr_obj.paginator.num_pages}}" aria-label="Next">
+                        <span aria-hidden="true">Fim</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
 
 </div>
 

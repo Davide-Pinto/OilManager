@@ -1,14 +1,14 @@
 
 :root{
     --primary: #959A28;
+    --secondary: #949a2863;
     --main-background: rgb(247, 252, 245);
     --font-colour: rgb(49, 49, 49)
 }
 
 .client-page-container{
-    background-color: rgba(0, 0, 255, 0.055);
     margin: 80px;
-    height: 90vh;
+    height: 95vh;
 }
 
 table{
@@ -46,3 +46,29 @@ table td{
     color:var(--font-colour);
     font-size: 1.15rem;
 }
+
+.container-pagination{
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button{
+    padding: 7px 16px;
+    color: var(--font-colour);
+    background-color: #949a282d;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px;
+    border-radius: 9%;
+    margin: 2px;
+
+}
+
+.button.active, .button:hover{
+    text-decoration: none;
+    color: var(--font-colour);
+    background: var(--secondary)
+}
+
