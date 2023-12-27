@@ -7,8 +7,11 @@
 }
 
 .client-page-container{
-    margin: 80px;
+    width: 100%;
+    padding: 30px;
+    margin-right: 80px;
     height: 95vh;
+    align-items: center;
 }
 
 table{
@@ -48,7 +51,7 @@ table td{
 }
 
 .container-pagination{
-    font-size: 20px;
+    font-size: 15px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -58,7 +61,6 @@ table td{
     padding: 7px 16px;
     color: var(--font-colour);
     background-color: #949a282d;
-    font-size: 20px;
     cursor: pointer;
     border: 1px;
     border-radius: 9%;
@@ -71,4 +73,37 @@ table td{
     color: var(--font-colour);
     background: var(--secondary)
 }
+
+.filter-section{
+    display:flex;
+    align-items: center;
+}
+
+.search-filter{
+    background-color: var(--main-background);
+    width: 50%;
+    font-size: 18px;
+    margin-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+.filter-buttons{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter-buttons button{
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 9%;
+    padding: 8px 15px;
+    margin: 2px;
+}
+
+::placeholder{
+    text-align: center;
+}
+
 

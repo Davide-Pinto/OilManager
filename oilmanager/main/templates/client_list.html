@@ -5,13 +5,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <div class="client-page-container">
-    <h1>Lista de Clientes</h1>
+    <h1>Clientes</h1>
     <hr>
     <div class="filter-section">
-        <input type="text" id="searchInput" placeholder="Find by name/client/id...">
-        <button id="showClosed">Show Closed</button>
-        <button id="importClients">Import Clients</button>
-        <button id="createClient">Create Client</button>
+        <div class="search-filter">
+            <input type="text" id="searchInput" placeholder="Procurar">
+        </div>
+        <div class="filter-buttons">
+            <button id="showClosed">Criar</button>
+            <button id="importClients">Exportar</button>
+            <button id="createClient">Importar</button>
+        </div>
     </div>
     <hr>
     <span>Mostrando {{pagr_obj.start_index}}-{{pagr_obj.end_index}} de {{pagr_obj.paginator.count}} Clientes </span>
