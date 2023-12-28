@@ -67,7 +67,7 @@ tbody tr:hover{
 .button{
     padding: 7px 16px;
     color: var(--font-colour);
-    background-color: #949a282d;
+    background-color: var(--secondary);
     cursor: pointer;
     border: 1px;
     border-radius: 9%;
@@ -78,7 +78,7 @@ tbody tr:hover{
 .button.active, .button:hover{
     text-decoration: none;
     color: var(--font-colour);
-    background: var(--secondary)
+    background: var(--table-hover)
 }
 
 .filter-section{
@@ -89,7 +89,7 @@ tbody tr:hover{
 .search-filter{
     background-color: var(--main-background);
     width: 50%;
-    font-size: 18px;
+    font-size: 15px;
     margin-right: 10px;
     padding-left: 10px;
     display: flex;
@@ -97,16 +97,25 @@ tbody tr:hover{
     align-items: center;
 }
 
+.search-filter span{
+    font-size: 20px;
+}
 .search-filter button{
     background-color: var(--secondary);
     border: none;
     border-radius: 9%;
-    padding: 8px 15px;
+    padding: 2px 15px;
     margin: 2px;
 }
+
+.search-filter button:hover{
+    background-color: var(--table-hover);
+}
 .search-filter input{
-    padding: 6px 13px;
-    margin: 2px;
+    height: 15%;
+    width: 150px;
+    padding: 1px 7px;
+    margin: 3px;
 }
 
 .filter-buttons{
@@ -122,6 +131,11 @@ tbody tr:hover{
     padding: 8px 15px;
     margin: 2px;
 }
+
+.filter-buttons button:hover{
+    background-color: var(--table-hover);
+}
+
 
 
 
