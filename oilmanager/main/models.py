@@ -77,6 +77,15 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class Camiao(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    matricula = models.CharField(db_column='Matricula', max_length=255, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'camiao'
+
+
 class Cliente(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     nome = models.CharField(db_column='Nome', max_length=255, blank=True, null=True)  # Field name made lowercase.
@@ -88,10 +97,24 @@ class Cliente(models.Model):
         db_table = 'cliente'
 
 
+class Despesa(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    camiaoid = models.ForeignKey(Camiao, models.DO_NOTHING, db_column='CamiaoID', blank=True, null=True)  # Field name made lowercase.
+    tipodespesaid = models.ForeignKey('Tipodespesa', models.DO_NOTHING, db_column='TipoDespesaID')  # Field name made lowercase.
+    valor = models.FloatField(db_column='Valor')  # Field name made lowercase.
+    username = models.CharField(db_column='UserName', max_length=255)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'despesa'
+
+
 class Distribuicaoazeite(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    estadoid = models.ForeignKey('Estado', models.DO_NOTHING, db_column='EstadoID')  # Field name made lowercase.
-    quantidadeazeite = models.FloatField(db_column='QuantidadeAzeite', blank=True, null=True)  # Field name made lowercase.
+    estadoid = models.ForeignKey('Estado', models.DO_NOTHING, db_column='EstadoID', blank=True, null=True)  # Field name made lowercase.
+    clienteid = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='ClienteID')  # Field name made lowercase.
+    azeitetotal = models.FloatField(db_column='Azeitetotal', blank=True, null=True)  # Field name made lowercase.
+    azeiteentregue = models.FloatField(db_column='Azeiteentregue', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -168,6 +191,7 @@ class Producaoazeite(models.Model):
     lagarid = models.ForeignKey(Lagar, models.DO_NOTHING, db_column='LagarID')  # Field name made lowercase.
     dataproducao = models.DateField(db_column='DataProducao', blank=True, null=True)  # Field name made lowercase.
     azeiteproduzido = models.FloatField(db_column='AzeiteProduzido', blank=True, null=True)  # Field name made lowercase.
+    conv = models.FloatField(db_column='Conv')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -176,19 +200,30 @@ class Producaoazeite(models.Model):
 
 class Recolhaazeitona(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    clienteid = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='ClienteID')  # Field name made lowercase.
     distribuicaoazeiteid = models.ForeignKey(Distribuicaoazeite, models.DO_NOTHING, db_column='DistribuicaoAzeiteID')  # Field name made lowercase.
     transporteazeitonaid = models.ForeignKey('Transporteazeitona', models.DO_NOTHING, db_column='TransporteAzeitonaID')  # Field name made lowercase.
+    clienteid = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='ClienteID')  # Field name made lowercase.
     quantidadeazeitona = models.FloatField(db_column='QuantidadeAzeitona', blank=True, null=True)  # Field name made lowercase.
     datarecolha = models.DateField(db_column='DataRecolha', blank=True, null=True)  # Field name made lowercase.
+    conv = models.FloatField(db_column='Conv')  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'recolhaazeitona'
 
 
+class Tipodespesa(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    tipo = models.CharField(db_column='Tipo', max_length=255, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'tipodespesa'
+
+
 class Transporteazeitona(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    camiaoid = models.ForeignKey(Camiao, models.DO_NOTHING, db_column='CamiaoID', blank=True, null=True)  # Field name made lowercase.
     lagarid = models.ForeignKey(Lagar, models.DO_NOTHING, db_column='LagarID')  # Field name made lowercase.
     datatransporte = models.DateField(db_column='DataTransporte', blank=True, null=True)  # Field name made lowercase.
     quantidade = models.FloatField(db_column='Quantidade', blank=True, null=True)  # Field name made lowercase.

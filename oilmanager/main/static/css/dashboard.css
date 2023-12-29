@@ -14,7 +14,7 @@
 
 body{
     background-color: var(--main-background);
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .bx-user-circle {
@@ -22,7 +22,7 @@ body{
 }
 
 .sidebar{
-    position: absolute;
+    position:fixed;
     top: 0;
     left: 0;
     height: 100vh;
