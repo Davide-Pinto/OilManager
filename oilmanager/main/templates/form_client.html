@@ -1,0 +1,28 @@
+
+{% block client_popup %}
+    <!-- Popup Form -->
+    <div id="popupForm" class="popup_client">
+        <div class="popup_client_content">
+            <form id="client_form">
+                <div class="client_content_header">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <h1>Adicionar Cliente</h1>
+                    <hr>
+
+                </div>
+                <div class="client_content_body">
+                    <div class="client_input_label"><span>Nome: </span></div>
+                    <div class="client_input_field"><input type="text" name="nome" placeholder="Nome e Apelido"></div>
+                    <div class="client_input_label"><span>Localidade: </span></div>
+                    <div class="client_input_field"><input type="text" name="Localidade" placeholder="Localidade"></div>
+                    <div class="client_input_label"><span>Contacto: </span></div>
+                    <div class="client_input_field"><input type="text" name="Contacto" placeholder="Nº Telefone/Telemovel"></div> 
+                </div>
+                <div class="client_content_buttons">
+                    <button type="submit">Adicionar</button>
+                    <button type="submit">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

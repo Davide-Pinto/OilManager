@@ -72,7 +72,6 @@ tbody tr:hover{
     border: 1px;
     border-radius: 9%;
     margin: 2px;
-
 }
 
 .button.active, .button:hover{

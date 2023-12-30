@@ -1,29 +1,12 @@
 
 {% extends 'base_layout.html' %}
 {%block content%}
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <div class="client-page-container">
     <h1>Clientes</h1>
     <hr>
-    <!-- Popup Form -->
-<div id="popupForm" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <h1>Ficha de Cliente</h1>
-        <hr>
-        <form id="myForm">
-            <!-- Form fields go here -->
-            <div><input type="text" name="fieldname" placeholder="Nome"></div>
-            <div><input type="text" name="fieldname" placeholder="Localidade"></div>
-            <div><input type="text" name="fieldname" placeholder="Contacto"></div>
-            <!-- Add more fields as needed -->
-            <div><button type="submit">Criar</button></div>
-            <div><button type="submit">Cancelar</button></div>
-        </form>
-    </div>
-</div>
+    {% include 'form_client.html' %}
     <div class="filter-section">
         <div class="search-filter">
             <span><i class='bx bx-search-alt'></i></span>
@@ -33,7 +16,7 @@
             <button onclick="clearFilter()">Limpar</button>
         </div>
         <div class="filter-buttons">
-            <button id="showClosed" onclick="openPopup()">Criar</button>
+            <button id="showClosed" onclick="openPopup()"><i class='bx bxs-add-to-queue'></i></button>
             <button id="importClients">Exportar</button>
             <button id="createClient">Importar</button>
         </div>
@@ -47,6 +30,7 @@
                 <th>Nome</th>
                 <th>Localidade</th>
                 <th>Contacto</th>
+                <th>Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -56,6 +40,7 @@
                 <td>{{client.nome}}</td>
                 <td>{{client.morada}}</td>
                 <td>{{client.contacto}}</td>
+                <td><i class='bx bxs-edit-alt' ></i></td>
             </tr>
             {% endfor %}
             
