@@ -57,6 +57,18 @@ tbody tr:hover{
     cursor: pointer;
     background-color: var(--table-hover);
 }
+
+.table_field_button i{
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+
+.table_field_button i:hover{
+    cursor: pointer;
+    background-color: var(--main-background);
+    box-shadow: 0 0 5px rgba(0,0,0,.45);
+}
+
 .container-pagination{
     font-size: 15px;
     display: flex;

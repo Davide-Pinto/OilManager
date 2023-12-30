@@ -7,6 +7,9 @@
     <h1>Clientes</h1>
     <hr>
     {% include 'form_client.html' %}
+    {% comment %} {%if sucess == 1 %}
+        {% include 'client_creation_sucess.html' %}
+    {% endif %} {% endcomment %}
     <div class="filter-section">
         <div class="search-filter">
             <span><i class='bx bx-search-alt'></i></span>
@@ -36,11 +39,11 @@
         <tbody>
             {% for client in pagr_obj %}
             <tr>
-                <td>{{client.id}}</td>
-                <td>{{client.nome}}</td>
-                <td>{{client.morada}}</td>
-                <td>{{client.contacto}}</td>
-                <td><i class='bx bxs-edit-alt' ></i></td>
+                <td class="table_field">{{client.id}}</td>
+                <td class="table_field">{{client.nome}}</td>
+                <td class="table_field">{{client.morada}}</td>
+                <td class="table_field">{{client.contacto}}</td>
+                <td class="table_field_button"><i class='bx bxs-edit-alt' ></i></td>
             </tr>
             {% endfor %}
             

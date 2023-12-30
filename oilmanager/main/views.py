@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Cliente
 from django.core.paginator import Paginator
 from django.db.models import Q
+from main.forms import ClientForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -9,15 +11,28 @@ def home(request):
     return render(request, 'dashboard.html')
 
 def clients(request):
+    sucess = 0
+    form = ClientForm(request.POST or None)
+    if request.method =='POST':
+        print("Form is invalid. SHIT:", form.errors)
+        if 'submit' in request.POST:
+            form = ClientForm(request.POST)
+            if form.is_valid():
+                form.save()
+                sucess = 1
+            else:
+               print("Form is invalid. Errors:", form.errors)
+    else:
+        form = ClientForm()
     search_query = request.GET.get("search-bar", "")
     if search_query:
         # Initialize an empty QuerySet
-        data = Cliente.objects.none()
+        data = Cliente.objects.none().order_by('id')
 
         # Check if search_query can be converted to an integer for ID search
         try:
             client_id = int(search_query)
-            data |= Cliente.objects.filter(id=client_id)
+            data |= Cliente.objects.filter(id=client_id).order_by('id')
         except ValueError:
             pass  # search_query wasn't an integer, so we skip ID search
         
@@ -26,15 +41,16 @@ def clients(request):
             Q(nome__icontains=search_query) |
             Q(morada__icontains=search_query) |
             Q(contacto=search_query)
-        )
+        ).order_by('id')
     else:
-        data = Cliente.objects.all()
+        data = Cliente.objects.all().order_by('id')
     paginator = Paginator(data, 10)
-    
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
         'pagr_obj': page_obj,
+        'form':form,
+        'sucess': sucess,
     }
     return render(request, 'client_list.html', context)
 
