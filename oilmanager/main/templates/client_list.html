@@ -4,12 +4,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <div class="client-page-container">
+    {% for msg in messages%}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>WOW!</strong> {{msg}}
+        <button style="justify-content: center"type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
     <h1>Clientes</h1>
     <hr>
     {% include 'form_client.html' %}
-    {% comment %} {%if sucess == 1 %}
-        {% include 'client_creation_sucess.html' %}
-    {% endif %} {% endcomment %}
     <div class="filter-section">
         <div class="search-filter">
             <span><i class='bx bx-search-alt'></i></span>

@@ -11,7 +11,7 @@ def home(request):
     return render(request, 'dashboard.html')
 
 def clients(request):
-    sucess = 0
+    #Add Client to DB
     form = ClientForm(request.POST or None)
     if request.method =='POST':
         print("Form is invalid. SHIT:", form.errors)
@@ -19,11 +19,14 @@ def clients(request):
             form = ClientForm(request.POST)
             if form.is_valid():
                 form.save()
-                sucess = 1
+                messages.success(request, "Ficha criada com Sucesso")
             else:
                print("Form is invalid. Errors:", form.errors)
     else:
         form = ClientForm()
+        
+    #-----------------END ADD-CLIENT-TO-DB-----------------------
+    #----------------------SEARCH BAR----------------------------
     search_query = request.GET.get("search-bar", "")
     if search_query:
         # Initialize an empty QuerySet
@@ -47,12 +50,16 @@ def clients(request):
     paginator = Paginator(data, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    
+    #-----------------END-SEARCH-BAR-------------------------------
+    
     context = {
         'pagr_obj': page_obj,
         'form':form,
-        'sucess': sucess,
     }
     return render(request, 'client_list.html', context)
+
+
 
 def lagares(request):
     return render(request, 'lagares.html')
