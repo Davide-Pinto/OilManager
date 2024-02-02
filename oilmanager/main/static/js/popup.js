@@ -4,4 +4,5 @@ function openPopup() {
 
 function closePopup() {
     document.getElementById("popupForm").style.display = "none";
+    document.getElementById("message").style.display = "none";
 }

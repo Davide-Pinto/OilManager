@@ -5,9 +5,9 @@
 
 <div class="client-page-container">
     {% for msg in messages%}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="message">
         <strong>WOW!</strong> {{msg}}
-        <button style="justify-content: center"type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <button style="justify-content: center"type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closePopup()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -18,8 +18,8 @@
     <div class="filter-section">
         <div class="search-filter">
             <span><i class='bx bx-search-alt'></i></span>
-            <form>
-                <input name="search-bar" type="text" id="searchInput" placeholder="Procurar">
+            <form method="get">
+                <input name="search-bar" type="text" id="searchInput" placeholder="Procurar" value ={{search_query}} >
             </form>
             <button onclick="clearFilter()">Limpar</button>
         </div>
@@ -61,31 +61,28 @@
                     <ul class="pagination">
                         {% if pagr_obj.has_previous %}
                         <li class="page-item"> 
-                            <a class="button" href="?page=1" aria-label="Previous">
-                                <span aria-hidden="true">Início</span>
-                            </a>              
+                            <a class="button" href="?page=1&search-bar={{search_query}}" aria-label="Previous">Início</a>             
                         </li>
                     <li class="page-item">
-                        <a class="button" href="?page={{ pagr_obj.previous_page_number }}" aria-label="Previous">
-                            <span aria-hidden="true">Anterior</span>
-                        </a>
+                        <a class="button" href="?page={{ pagr_obj.previous_page_number }}&search-bar={{search_query}}" aria-label="Previous">Anterior</a>
                     </li>
                     {% endif %}
                     {% for num_page in pagr_obj.paginator.page_range %}
                         {%if pagr_obj.number == num_page %}
                             <li class="page-item"><a class="button active" href="?page={{num_page}}">{{pagr_obj.number}}</a></li>
                         {% elif pagr_obj.number != num_page %}
-                            <li class="page-item"><a class="button" href="?page={{num_page}}">{{num_page}}</a></li>
+                            <li class="page-item"><a class="button" href="?page={{ num_page }}&search-bar={{search_query}}">{{ num_page }}</a>
+                            </li>
                         {% endif %}
                     {% endfor %}
                     {% if pagr_obj.has_next %}
                     <li class="page-item">
-                        <a class="button" href="?page={{pagr_obj.next_page_number}}" aria-label="Next">
+                        <a class="button" href="?page={{pagr_obj.next_page_number}}&search-bar={{search_query}}" aria-label="Next">
                         <span aria-hidden="true">Seguinte</span>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="button" href="?page={{pagr_obj.paginator.num_pages}}" aria-label="Next">
+                        <a class="button" href="?page={{pagr_obj.paginator.num_pages}}&search-bar={{search_query}}" aria-label="Next">
                         <span aria-hidden="true">Fim</span>
                         </a>
                     </li>

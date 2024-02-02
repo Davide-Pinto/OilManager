@@ -56,6 +56,7 @@ def clients(request):
     context = {
         'pagr_obj': page_obj,
         'form':form,
+        'search_query': search_query,
     }
     return render(request, 'client_list.html', context)
 

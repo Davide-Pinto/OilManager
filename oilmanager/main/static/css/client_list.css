@@ -112,10 +112,12 @@ tbody tr:hover{
     font-size: 20px;
 }
 .search-filter button{
+    padding: 7px 16px;
+    color: var(--font-colour);
     background-color: var(--secondary);
-    border: none;
-    border-radius: 9%;
-    padding: 2px 15px;
+    cursor: pointer;
+    border: 1px;
+    border-radius: 4px;
     margin: 2px;
 }
 
@@ -123,8 +125,8 @@ tbody tr:hover{
     background-color: var(--table-hover);
 }
 .search-filter input{
-    height: 15%;
-    width: 150px;
+    height: 35px;
+    width: 180px;
     padding: 1px 7px;
     margin: 3px;
 }
