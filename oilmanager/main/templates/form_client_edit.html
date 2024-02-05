@@ -1,0 +1,28 @@
+{% block client_popup_edit %}
+    <!-- Popup Form -->
+    <div id="popupForm_edit" class="popup_client_edit">
+        <div class="popup_client_content">
+            <form id="client_form" method="POST" action="{% url 'clients' %}">
+                {% csrf_token %}
+                <div class="client_content_header">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <h1>Editar Cliente</h1>
+                    <hr>
+
+                </div>
+                <div class="client_content_body">
+                    <div class="client_input_label"><span>Nome: </span></div>
+                    <div class="client_input_field">{{form.nome}}</div>
+                    <div class="client_input_label"><span>Localidade: </span></div>
+                    <div class="client_input_field">{{form.morada}}</div>
+                    <div class="client_input_label"><span>Contacto: </span></div>
+                    <div class="client_input_field">{{form.contacto}}</div> 
+                </div>
+                <div class="client_content_buttons">
+                    <button type="submit" name="submit">Atualizar</button>
+                    <button type="submit" name="submit">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

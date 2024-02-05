@@ -27,6 +27,7 @@ def clients(request):
         
     #-----------------END ADD-CLIENT-TO-DB-----------------------
     #----------------------SEARCH BAR----------------------------
+    row = request.GET.get("rows", "15")
     search_query = request.GET.get("search-bar", "")
     if search_query:
         # Initialize an empty QuerySet
@@ -47,7 +48,7 @@ def clients(request):
         ).order_by('id')
     else:
         data = Cliente.objects.all().order_by('id')
-    paginator = Paginator(data, 10)
+    paginator = Paginator(data,row)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     

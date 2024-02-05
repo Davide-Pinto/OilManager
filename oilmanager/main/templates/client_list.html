@@ -15,11 +15,13 @@
     <h1>Clientes</h1>
     <hr>
     {% include 'form_client.html' %}
+    {% include 'form_client_edit.html' %}
     <div class="filter-section">
         <div class="search-filter">
             <span><i class='bx bx-search-alt'></i></span>
             <form method="get">
                 <input name="search-bar" type="text" id="searchInput" placeholder="Procurar" value ={{search_query}} >
+                <button type="submit">Procurar</button>
             </form>
             <button onclick="clearFilter()">Limpar</button>
         </div>
@@ -30,7 +32,27 @@
         </div>
     </div>
     <hr>
+    <div>
     <span>Mostrando {{pagr_obj.start_index}}-{{pagr_obj.end_index}} de {{pagr_obj.paginator.count}} Clientes </span>
+    <select id="row_number">
+        <option value="15" {% if request.GET.rows == "15" %}selected{% endif %}>15</option>
+        <option value="20" {% if request.GET.rows == "20" %}selected{% endif %}>20</option>
+        <option value="30" {% if request.GET.rows == "30" %}selected{% endif %}>30</option>
+        <option value="50" {% if request.GET.rows == "50" %}selected{% endif %}>50</option>
+        <option value="100" {% if request.GET.rows == "100" %}selected{% endif %}>100</option>
+        <option value="30000" {% if request.GET.rows == "30000" %}selected{% endif %}>Todos</option>
+    </select>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('row_number').addEventListener('change', function() {
+                var rowNum = this.value;
+                var currentSearch = "{{ search_query|escapejs }}";
+                window.location.href = "?rows=" + rowNum + "&search-bar=" + encodeURIComponent(currentSearch);
+            });
+        });
+    </script>
+    
+    <div>
     <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
@@ -48,7 +70,7 @@
                 <td class="table_field">{{client.nome}}</td>
                 <td class="table_field">{{client.morada}}</td>
                 <td class="table_field">{{client.contacto}}</td>
-                <td class="table_field_button"><i class='bx bxs-edit-alt' ></i></td>
+                <td class="table_field_button"><i class='bx bxs-edit-alt' onclick="openPopup_client_edit()"></i></td>
             </tr>
             {% endfor %}
             
